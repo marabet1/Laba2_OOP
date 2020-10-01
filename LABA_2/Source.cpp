@@ -6,17 +6,15 @@ int main() {
 
 	std::cin >> lengthA >> lengthB;
 
-	IntersectionTwoArrays intersection(lengthA, lengthB);
-
-	arrayAB = intersection.getThirdArray();
-	lengthAB = intersection.getSizeOfThirdArray();
+	Intersection obj1(lengthA, lengthB);
+	arrayAB = obj1.getThirdArray();
+	lengthAB = obj1.getSizeOfThirdArray();
 	
-	std::cout << std::endl;
-	for (int i = 0; i < lengthAB; i++)
-		std::cout << arrayAB[i] << ", ";
+	printArray(arrayAB, lengthAB);
 
 	return 0;
 }
+
 
 
 

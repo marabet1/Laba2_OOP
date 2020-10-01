@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Header.h"
 
-IntersectionTwoArrays::IntersectionTwoArrays(int lengthA, int lengthB)
+Intersection::Intersection(int lengthA, int lengthB)
 {
 	this->lengthA = lengthA;
 	this->lengthB = lengthB;
@@ -16,27 +16,38 @@ IntersectionTwoArrays::IntersectionTwoArrays(int lengthA, int lengthB)
 	arrayAB = toIntersectArrays(lengthAB);
 }
 
-IntersectionTwoArrays::~IntersectionTwoArrays()
+Intersection::Intersection(const Intersection& object)
+{
+	this->lengthAB = object.lengthAB;
+	this->arrayAB = new int[lengthAB];
+
+	for (int i = 0; i < object.lengthAB; i++)
+	{
+		this->arrayAB[i] = object.arrayAB[i];
+	}
+}
+
+Intersection::~Intersection()
 {
 	delete[] arrayA;
 	delete[] arrayB;
 	delete[] arrayAB;
 }
 
-int* IntersectionTwoArrays::getThirdArray() {
+int* Intersection::getThirdArray() {
 	return arrayAB;
 }
 
-int IntersectionTwoArrays::getSizeOfThirdArray() {
+int Intersection::getSizeOfThirdArray() {
 	return lengthAB;
 }
 
-int* IntersectionTwoArrays::dynamicArray(int lengthArray) {
+int* Intersection::dynamicArray(int lengthArray) {
 	int* array = new int[lengthArray];
 	return array;
 }
 
-int* IntersectionTwoArrays::initializeArray(int* array, int lengthArray) {
+int* Intersection::initializeArray(int* array, int lengthArray) {
 
 	for (int i = 0; i < lengthArray; i++) {
 		std::cin >> array[i];
@@ -44,15 +55,7 @@ int* IntersectionTwoArrays::initializeArray(int* array, int lengthArray) {
 	return array;
 }
 
-void IntersectionTwoArrays::printArray(int* array, int length) {
-
-	for (int i = 0; i < length; i++) {
-		std::cout << array[i] << ", ";
-	}
-	std::cout << std::endl;
-}
-
-int* IntersectionTwoArrays::toIntersectArrays(int& lengthAB) {
+int* Intersection::toIntersectArrays(int& lengthAB) {
 
 	int* arrayTemp;
 	arrayTemp = dynamicArray(lengthA);
@@ -79,4 +82,12 @@ int* IntersectionTwoArrays::toIntersectArrays(int& lengthAB) {
 	}
 	delete[] arrayTemp;
 	return arrayAB;
+}
+
+void printArray(int* array, int length) {
+
+	for (int i = 0; i < length; i++) {
+		std::cout << array[i] << ", ";
+	}
+	std::cout << std::endl;
 }

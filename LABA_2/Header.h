@@ -1,15 +1,17 @@
 #pragma once
 
-class IntersectionTwoArrays
+class Intersection
 {
 public:
-	IntersectionTwoArrays(int lengthA, int lengthB);
+	Intersection(int lengthA, int lengthB);
+
+	Intersection(const Intersection& object);
 
 	int* getThirdArray();
 
 	int getSizeOfThirdArray();
 
-	~IntersectionTwoArrays();
+	~Intersection();
 
 private:
 	int* arrayA, * arrayB, * arrayAB;
@@ -19,7 +21,8 @@ private:
 
 	int* initializeArray(int* array, int lengthArray);
 
-	void printArray(int* array, int length);
-
 	int* toIntersectArrays(int& lengthAB);
 };
+
+void printArray(int*, int);
+
