@@ -10,7 +10,7 @@ IntersectionTwoArrays::IntersectionTwoArrays(int lengthA, int lengthB)
 	arrayB = dynamicArray(lengthB);
 	arrayAB = dynamicArray(lengthA);
 
-	arrayA = initializeArray(arrayA, lengthA);
+	arrayA = initializeArray(arrayA, lengthA); 
 	arrayB = initializeArray(arrayB, lengthB);
 
 	arrayAB = toIntersectArrays(lengthAB);
