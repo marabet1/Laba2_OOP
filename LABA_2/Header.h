@@ -4,25 +4,23 @@ class Intersection
 {
 public:
 	Intersection(int lengthA, int lengthB);
-
 	Intersection(const Intersection& object);
-
-	int* getThirdArray();
-
-	int getSizeOfThirdArray();
-
 	~Intersection();
 
-private:
-	int* arrayA, * arrayB, * arrayAB;
-	int  lengthA, lengthB, lengthAB;
+	int* getThirdArray();
+	int getSizeOfThirdArray();
 
 	int* dynamicArray(int lengthArray);
+	int* setArray(int* array, int lengthArray);
+	void toIntersectArrays();
 
-	int* initializeArray(int* array, int lengthArray);
+private:
+	int *arrayA,
+		*arrayB,
+		*arrayAB;
 
-	int* toIntersectArrays(int& lengthAB);
+	int lengthA,
+		lengthB,
+		lengthAB;
 };
-
-void printArray(int*, int);
 

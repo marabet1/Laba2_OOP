@@ -2,15 +2,17 @@
 #include "Header.h"
 
 int main() {
-	int lengthA, lengthB, lengthAB, *arrayAB;
 
-	std::cin >> lengthA >> lengthB;
+	Intersection obj1(5, 4);
+	Intersection obj2(obj1);
 
-	Intersection obj1(lengthA, lengthB);
-	arrayAB = obj1.getThirdArray();
-	lengthAB = obj1.getSizeOfThirdArray();
-	
-	printArray(arrayAB, lengthAB);
+	int *arrayAB = obj2.getThirdArray();
+	int lengthAB = obj2.getSizeOfThirdArray();
+
+	for (int i = 0; i < lengthAB; i++)
+	{
+		std::cout << arrayAB[i];
+	}
 
 	return 0;
 }
