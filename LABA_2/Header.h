@@ -1,26 +1,24 @@
 #pragma once
+#include <iostream>
 
 class Intersection
 {
 public:
-	Intersection(int lengthA, int lengthB);
+	Intersection();
+	Intersection(int length);
 	Intersection(const Intersection& object);
 	~Intersection();
 
-	int* getThirdArray();
-	int getSizeOfThirdArray();
+	int* getArray();
+	int getLength();
+	void setArray(int* array);
 
-	int* dynamicArray(int lengthArray);
-	int* setArray(int* array, int lengthArray);
-	void toIntersectArrays();
+	Intersection toIntersectArrays(const Intersection& object);
+
+	int& operator [] (const int index);
 
 private:
-	int *arrayA,
-		*arrayB,
-		*arrayAB;
-
-	int lengthA,
-		lengthB,
-		lengthAB;
+	int* array;
+	int length;
 };
 

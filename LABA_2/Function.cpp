@@ -1,97 +1,81 @@
 #include <iostream>
 #include "Header.h"
 
-Intersection::Intersection(int lengthA, int lengthB)
+Intersection::Intersection()
 {
-	this->lengthA = lengthA;
-	this->lengthB = lengthB;
+	this->length = 10;
+	this->array = new int[10];
+}
 
-	arrayA = dynamicArray(lengthA);
-	arrayB = dynamicArray(lengthB);
-	arrayAB = dynamicArray(lengthA);
-
-	arrayA = setArray(arrayA, lengthA); 
-	arrayB = setArray(arrayB, lengthB);
-
-	toIntersectArrays();
-
+Intersection::Intersection(int length)
+{
+	this->length = length;
+	this->array = new int[length];
 }
 
 Intersection::Intersection(const Intersection& object)
 {
-	this->lengthAB = object.lengthAB;
-	this->arrayAB = dynamicArray(object.lengthAB);
+	this->length = object.length;
+	this->array = new int[length];
 
-	for (int i = 0; i < object.lengthAB; i++)
+	for (int i = 0; i < object.length; i++)
 	{
-		this->arrayAB[i] = object.arrayAB[i];
+		this->array[i] = object.array[i];
 	}
 }
 
 Intersection::~Intersection()
 {
-	delete[] arrayA;
-	delete[] arrayB;
-	delete[] arrayAB;
+	delete[] array;
 }
 
-//---------------------------------------------------------------------
-
-int* Intersection::getThirdArray()
+int* Intersection::getArray()
 {
-	return arrayAB;
+	return this->array;
 }
 
-int Intersection::getSizeOfThirdArray()
+int Intersection::getLength()
 {
-	return lengthAB;
+	return this->length;
 }
 
-int* Intersection::dynamicArray(int lengthArray)
+void Intersection::setArray(int* array)
 {
-	int* array = new int[lengthArray];
-	return array;
+	this->array = array;
 }
 
-int* Intersection::setArray(int* array, int lengthArray)
+Intersection Intersection::toIntersectArrays(const Intersection& object)
 {
+	int lengthTemp;
 
-	for (int i = 0; i < lengthArray; i++) {
-		std::cin >> array[i];
+	if (this->length < object.length)
+	{
+		lengthTemp = this->length;
 	}
-	return array;
-}
-
-void Intersection::toIntersectArrays()
-{
-	int* arrayTemp = dynamicArray(lengthA);
+	else
+	{
+		lengthTemp = object.length;
+	}
 
 	int count = 0;
-	for (int i = 0; i < lengthA; i++)
+	Intersection temp(lengthTemp);
+
+	for (int i = 0; i < this->length; i++)
 	{
-		int j;
-		for (j = 0; j < i; j++)
+		for (int j = 0; j < object.length; j++)
 		{
-			if (arrayA[i] == arrayA[j]) {
+			if (this->array[i] == object.array[j])
+			{
+				temp.array[count++] = this->array[i];
 				break;
 			}
 		}
-		if (j == i) {
-			arrayTemp[count++] = arrayA[i];
-		}
 	}
+	temp.length = count;
+	return temp;
+}
 
-	for (int i = 0; i < count; i++)
-	{
-		bool isNumberFound = false;
-		for (int j = 0; j < lengthB; j++) {
-			if (arrayTemp[i] == arrayB[j]) {
-				isNumberFound = true;
-			}
-		}
-		if (isNumberFound) {
-			arrayAB[lengthAB++] = arrayTemp[i];
-		}
-	}
-	delete[] arrayTemp;
+int& Intersection::operator[](const int index)
+{
+	return array[index];
 }
